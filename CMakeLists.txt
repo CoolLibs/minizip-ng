@@ -696,17 +696,17 @@ target_link_libraries(${MINIZIP_TARGET} PUBLIC ${MINIZIP_LIB} ${MINIZIP_DEP})
 target_link_directories(${MINIZIP_TARGET} PUBLIC ${MINIZIP_LBD})
 target_compile_definitions(${MINIZIP_TARGET} PRIVATE ${STDLIB_DEF} ${MINIZIP_DEF})
 target_include_directories(${MINIZIP_TARGET} PRIVATE ${MINIZIP_INC})
-target_include_directories(${MINIZIP_TARGET} PUBLIC
+target_include_directories(${MINIZIP_TARGET} SYSTEM PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 if(MZ_COMPAT)
-    target_include_directories(${MINIZIP_TARGET} PUBLIC
+    target_include_directories(${MINIZIP_TARGET} SYSTEM PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/compat/>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
 endif()
 
 # Install files
 if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
-    target_include_directories(${MINIZIP_TARGET} PUBLIC
+    target_include_directories(${MINIZIP_TARGET} SYSTEM PUBLIC
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${MINIZIP_TARGET}>)
 
     install(TARGETS ${MINIZIP_TARGET} ${MINIZIP_DEP}
